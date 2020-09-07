@@ -1,0 +1,34 @@
+﻿@model MovieCustomerMvcAppWithAuthen.ViewModel.NewMovieViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New Movie</h2>
+
+@using (Html.BeginForm("Save", "Movies"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Name)
+
+
+    </div>
+  
+    <div class="form-group">
+        @Html.LabelFor(m => m.GenreId)
+        @Html.DropDownListFor(m => m.GenreId,
+       new SelectList(Model.GenreType, "Id", "GenreName"), " ",
+       new { @class = "form-control" })
+    </div>
+   
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+
+   
+   
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
